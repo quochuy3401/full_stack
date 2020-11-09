@@ -37,7 +37,7 @@ export class Home extends React.Component {
     if (loading) {
       return <p>Try to login ...</p>;
     }
-    if (!loggedInUser && !loggedInUser) {
+    if (!loading && !loggedInUser) {
       return <Redirect to="/auth/login" />;
     }
     return (

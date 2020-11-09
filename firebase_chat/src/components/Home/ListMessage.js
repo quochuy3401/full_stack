@@ -5,8 +5,14 @@ export class ListMessageClass extends React.Component {
   state = {
     messages: [],
   };
-  componentDidMount() {
-    firebaseDb
+  componentDidUpdate(prevProps) {
+    if (prevProps.activeCon.id === this.props.activeCon.id){
+      return;
+    }
+    if(this.detach){
+      this.detach();
+    }
+    this.detach = firebaseDb
       .collection("messages")
       .where("conversationId", "==", this.props.activeCon.id)
       .onSnapshot((querySnapshot) => {
